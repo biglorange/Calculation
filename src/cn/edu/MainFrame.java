@@ -1,68 +1,72 @@
 package cn.edu;
 
-import java.awt.GridLayout;
-import java.awt.Window;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.util.Iterator;
-import java.util.Set;
+import java.awt.EventQueue;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import java.awt.FlowLayout;
 import javax.swing.JTextField;
+import java.awt.BorderLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-import cn.edu.calculation.Cal;
-import cn.edu.entity.Overview;
+public class MainFrame {
 
-public class MainFrame extends JFrame implements ActionListener {
+	private JFrame frame;
+	private JTextField textField;
 
-		JPanel jpanel = null;
-		JLabel JProtein = null;
-		JLabel JTkw = null;
-		JLabel JWuw = null;
-		
-		Cal cal = new Cal();
-		
-		public MainFrame() {
-			getContentPane().setLayout(null);
-			jpanel = new JPanel();
-			JProtein = new JLabel("Protein");
-			JTkw = new JLabel("TKW");
-			JWuw = new JLabel("Wuw");
-			
-			JTextField input = new JTextField();
-			input.setBounds(85, 64, 136, 23);
-			getContentPane().add(input);
-			input.setColumns(10);
-			
-			JLabel lbltkwprotein = new JLabel("请输入TKWprotein");
-			lbltkwprotein.setBounds(85, 24, 136, 23);
-			getContentPane().add(lbltkwprotein);
-			
-			JButton button = new JButton("计算");
-			button.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					dispose();
-					new ShowFrame(Double.parseDouble(input.getText()));
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					MainFrame window = new MainFrame();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
-			});
-			button.setBounds(85, 132, 93, 23);
-			getContentPane().add(button);
-			
-			
-		}
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-
+			}
+		});
 	}
 
-	
+	/**
+	 * Create the application.
+	 */
+	public MainFrame() {
+		initialize();
+	}
 
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(500, 200, 336, 254);
+		frame.getContentPane().setLayout(null);
+		
+		textField = new JTextField();
+		textField.setBounds(102, 81, 105, 21);
+		frame.getContentPane().add(textField);
+		textField.setColumns(10);
+		
+		
+		
+		JButton button = new JButton("Calculation");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double input = Double.parseDouble(textField.getText());
+				frame.dispose();
+				ShowFrame showFrame = new ShowFrame(input);
+				
+			}
+		});
+		button.setBounds(102, 132, 105, 23);
+		frame.getContentPane().add(button);
+		
+		JLabel lbltkwprotein = new JLabel("please input: TKWprotein");
+		lbltkwprotein.setBounds(78, 44, 150, 15);
+		frame.getContentPane().add(lbltkwprotein);
+	}
+}

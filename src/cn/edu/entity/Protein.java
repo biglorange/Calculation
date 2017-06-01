@@ -1,21 +1,21 @@
 package cn.edu.entity;
 
 public class Protein {
-	private double hwam;
-	private double nucm;
+	private String hwam;
+	private String gnam;
 	public Protein() {
 		
 	}
-	public Protein(double hwam, double nucm) {
+	public Protein(String hwam, String gnam) {
 		super();
 		this.hwam = hwam;
-		this.nucm = nucm;
+		this.gnam = gnam;
 	}
-	public double getHwam() {
+	public String getHwam() {
 		return hwam;
 	}
-	public double getNucm() {
-		return nucm;
+	public String getGnam() {
+		return gnam;
 	}
 	
 
